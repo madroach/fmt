@@ -1,4 +1,11 @@
 #!/usr/bin/env ocaml
+
+let () =
+  match Sys.getenv_opt "OCAML_TOPLEVEL_PATH" with
+  | None -> prerr_endline "OCAML_TOPLEVEL_PATH undefined"
+  | Some v -> prerr_endline ("OCAML_TOPLEVEL_PATH=" ^ v)
+;;
+
 #use "topfind"
 #require "topkg"
 open Topkg
