@@ -3,7 +3,11 @@
 let () =
   match Sys.getenv_opt "OCAML_TOPLEVEL_PATH" with
   | None -> prerr_endline "OCAML_TOPLEVEL_PATH undefined"
-  | Some v -> prerr_endline ("OCAML_TOPLEVEL_PATH=" ^ v)
+  | Some v ->
+      prerr_endline ("OCAML_TOPLEVEL_PATH=" ^ v);
+      if Sys.file_exists (v ^ Filename.dir_sep ^ "topfind")
+      then prerr_endline "found topfind"
+      else prerr_endline "topfind nonexistent"
 ;;
 
 #use "topfind"
