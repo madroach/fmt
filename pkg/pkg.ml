@@ -5,6 +5,10 @@ let () =
   | None -> prerr_endline "OCAML_TOPLEVEL_PATH undefined"
   | Some v ->
       prerr_endline ("OCAML_TOPLEVEL_PATH=" ^ v);
+      begin
+        try Topdirs.dir_directory (Sys.getenv "OCAML_TOPLEVEL_PATH")
+        with Not_found -> ()
+      end;
       if Sys.file_exists (v ^ Filename.dir_sep ^ "topfind")
       then prerr_endline "found topfind"
       else prerr_endline "topfind nonexistent"
